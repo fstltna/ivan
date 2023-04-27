@@ -1,0 +1,1452 @@
+/*
+ *
+ *  Iter Vehemens ad Necem (IVAN)
+ *  Copyright (C) Timo Kiviluoto
+ *  Released under the GNU General
+ *  Public License
+ *
+ *  See LICENSING which should be included
+ *  along with this file for more details
+ *
+ */
+
+/*
+ * NOTICE!!!
+ *
+ * This file contains SPOILERS, which might ruin your IVAN experience
+ * totally. Also, editing anything can DESTROY GAME BALANCE or CAUSE
+ * OBSCURE BUGS if you don't know what you're doing. So from here on,
+ * proceed at your own risk!
+ */
+
+Dungeon ATTNAM;
+{
+  Levels = 5;
+  Description = "attnamese catacombs";
+  ShortDescription = "AC";
+
+  LevelDefault
+  {
+    Size = 30, 30;
+    GenerateMonsters = true;
+    Rooms = 10;
+    Items = 0;
+    IsOnGround = false;
+    TeamDefault = MONSTER_TEAM;
+    LOSModifier = 16;
+    IgnoreDefaultSpecialSquares = false;
+    CanGenerateBone = true;
+    EnchantmentMinusChanceBase = 0;
+    EnchantmentMinusChanceDelta = 0;
+    EnchantmentPlusChanceBase = 0;
+    EnchantmentPlusChanceDelta = 5;
+    BackGroundType = GRAY_FRACTAL;
+    FillSquare = GRANITE solidterrain(GROUND), BLACK_GRANITE earth;
+    TunnelSquare = GRANITE solidterrain(GROUND), 0;
+    IsCatacomb = true;
+    DifficultyBase = 0;
+    DifficultyDelta = 10;
+    MonsterAmountBase = 0;
+    MonsterAmountDelta = 5;
+    MonsterGenerationIntervalBase = 150;
+    MonsterGenerationIntervalDelta = -25;
+    EarthquakesAffectTunnels = true;
+    AudioPlayList =
+    {
+      1,
+      "Cathedral.mid";
+    }
+
+    RoomDefault
+    {
+      Pos = 2:XSize-5,2:YSize-5;
+      WallSquare = GRANITE solidterrain(GROUND), BLACK_GRANITE wall(BRICK_OLD);
+      FloorSquare = GRANITE solidterrain(GROUND), 0;
+      DoorSquare = GRANITE solidterrain(GROUND), 0;
+
+      Size = 4:11,4:11;
+      AltarPossible = false;
+      GenerateDoor = true;
+      DivineMaster = 0;
+      GenerateTunnel = true;
+      GenerateLanterns = false;
+      Type = ROOM_NORMAL;
+      GenerateFountains = false;
+      AllowLockedDoors = false;
+      AllowBoobyTrappedDoors = false;
+      Shape = RECTANGLE;
+      IsInside = true;
+      GenerateWindows = false;
+      UseFillSquareWalls = false;
+      Flags = 0;
+    }
+  }
+
+  Level 0;
+  {
+    Description = "Attnam";
+    ShortDescription = "Attnam";
+    FillSquare = solidterrain(SNOW_TERRAIN), 0;
+    Size = 61, 67;
+    GenerateMonsters = false;
+    Rooms = 20:25;
+    Items = 0;
+    IsOnGround = true;
+    TeamDefault = ATTNAM_TEAM;
+    LOSModifier = 48;
+    IgnoreDefaultSpecialSquares = false;
+    CanGenerateBone = false;
+    DifficultyBase = 150;
+    DifficultyDelta = 0;
+    EnchantmentMinusChanceBase = 0;
+    EnchantmentMinusChanceDelta = 0;
+    EnchantmentPlusChanceBase = 0;
+    EnchantmentPlusChanceDelta = 0;
+    BackGroundType = GRAY_FRACTAL;
+
+    RoomDefault
+    {
+      Pos = 2:XSize-5,2:51;
+      Size = 4:11,4:11;
+      AltarPossible = false;
+      WallSquare = solidterrain(SNOW_TERRAIN),wall(BRICK_FINE);
+      FloorSquare = solidterrain(PARQUET), 0;
+      DoorSquare = solidterrain(PARQUET),door;
+      GenerateDoor = true;
+      DivineMaster = 0;
+      GenerateTunnel = false;
+      GenerateLanterns = true;
+      Type = ROOM_NORMAL;
+      GenerateFountains = false;
+      AllowLockedDoors = false;
+      AllowBoobyTrappedDoors = false;
+      Shape = RECTANGLE;
+      IsInside = true;
+      GenerateWindows = true;
+      UseFillSquareWalls = false;
+      Flags = 0;
+    }
+
+    Square, Pos 0, 0;
+    {
+      Character = guard(PATROL) { WayPoint = { 4, 0, 0, XSize - 1, 0, XSize - 1, YSize - 1, 0, YSize - 1; } }
+    }
+
+    Square, Pos 4, 59; { Character = guard(VETERAN); }
+    Square, Pos 6, 59; { Character = guard(VETERAN); }
+    Square, Pos 23, 59; { Character = guard(VETERAN); }
+    Square, Pos 25, 59; { Character = guard(VETERAN); }
+    Square, Pos 35, 59; { Character = guard(VETERAN); }
+    Square, Pos 37, 59; { Character = guard(VETERAN); }
+    Square, Pos 54, 59; { Character = guard(VETERAN); }
+    Square, Pos 56, 59; { Character = guard(VETERAN); }
+
+    Square, Random NOT_IN_ROOM|HAS_NO_OTERRAIN;
+    {
+      OTerrain = decoration(SNOW_PINE);
+      Times = 200;
+    }
+
+    Square, Random NOT_IN_ROOM;
+    {
+      Character = hunter;
+      Times = 10;
+    }
+
+    Square, Random NOT_IN_ROOM;
+    {
+      Character = bear(POLAR_BEAR);
+    }
+
+    Square, Random NOT_IN_ROOM;
+    {
+      Character = farmer;
+      Times = 5;
+    }
+
+    Square, Random NOT_IN_ROOM;
+    {
+      Character = housewife;
+      Times = 5;
+    }
+
+    Square, Random NOT_IN_ROOM;
+    {
+      Character = child(BOY);
+      Times = 5;
+    }
+
+    Square, Random NOT_IN_ROOM;
+    {
+      Character = child(GIRL);
+      Times = 5;
+    }
+
+    Square, Random NOT_IN_ROOM;
+    {
+      Character = cossack;
+    }
+
+    Square, Random NOT_IN_ROOM;
+    {
+      Character = bum;
+    }
+
+    Square, Pos 30,YSize - 1;
+    {
+      EntryIndex = STAIRS_UP;
+    }
+
+    Room
+    {
+      Pos = 10,10;
+      Size = 41,42;
+      WallSquare = solidterrain(SNOW_TERRAIN), GRANITE wall(BRICK_FINE);
+      FloorSquare = solidterrain(SNOW_TERRAIN), 0;
+      GenerateDoor = false;
+      DivineMaster = VALPURUS;
+      GenerateLanterns = false;
+      Type = ROOM_CATHEDRAL;
+      IsInside = false;
+      GenerateWindows = false;
+
+      Square, Pos 1, 1;
+      {
+        Character = floatingeye { WayPoint = { 4, 11, 11, 49, 11, 49, 50, 11, 50; } }
+      }
+
+      Square, Pos 19, 41;
+      {
+        OTerrain = 0;
+      }
+
+      Square, Pos 20, 41;
+      {
+        OTerrain = 0;
+      }
+
+      Square, Pos 21, 41;
+      {
+        OTerrain = 0;
+      }
+
+      GTerrainMap
+      {
+        Pos = 4,3;
+        Size = 33,35;
+        Types
+        {
+          # = MARBLE solidterrain(FLOOR) { IsInside = true; }
+          - = MARBLE solidterrain(FLOOR) { IsInside = true; }
+          ~ = liquidterrain(POOL) { IsInside = true; }
+          = = liquidterrain(POOL);
+        }
+      }
+      {
+        ........................====.....
+        ............#########...=====....
+        ............#-------#....===.....
+        ####......###-------###...==.####
+        #--#......#-----------#......#--#
+        #--#....###-----------###....#--#
+        #--#....#---------------#....#--#
+        #--###..#---------------#..###--#
+        #----#..#---------------#..#----#
+        #----#..#---------------#..#----#
+        ###--#..###-----------###..#--###
+        ..#--###..#-----------#..###--#..
+        ..#----#..#-----------#..#----#..
+        ..###--####-----------####--###..
+        ....#-----#-----------#-----#....
+        ....#-----#-----------#-----#....
+        ....####--#-----------#--####....
+        .......#--#-----------#--#.......
+        ......###-#-----------#-###......
+        ..#####-#-#-----------#-#-#####..
+        .##-------#-----------#-------##.
+        .#---~~~#-#-----------#-#------#.
+        .#---~~~#-#-----------#-#------#.
+        .##--~~~#-#-----------#-#-----##.
+        ..##-~~~#-#-----------#-#----##..
+        ...##~~~#-######-######-###-##...
+        ....#~~~#---------------#---#....
+        ....#~~~#---------------#---#....
+        ...#######---###-###---#######...
+        ####---------#.....#---------####
+        #--------#####.....#####--------#
+        #--------#.............#--------#
+        ##---#####.............#####---##
+        .##--#.....................#--##.
+        ..####.....................####..
+      }
+
+      OTerrainMap
+      {
+        Pos = 1,1;
+        Size = 39,40;
+        Types
+        {
+          # = MARBLE wall(BRICK_FINE);
+          @ = MARBLE wall(BRICK_PROPAGANDA);
+          T = throne;
+          | = decoration(CARPET);
+          A = VALPURIUM altar(VALPURUS);
+          D = MARBLE door(HEXAGONAL_LOCK);
+          L = MARBLE door(HEXAGONAL_LOCK) { Parameters = LOCKED; }
+          b = decoration(SNOW_FIR);
+          1 = decoration(POOL_CORNER) { VisualEffects = NONE; }
+          2 = decoration(POOL_CORNER) { VisualEffects = MIRROR; }
+          3 = decoration(POOL_CORNER) { VisualEffects = MIRROR | FLIP; }
+          4 = decoration(POOL_CORNER) { VisualEffects = FLIP; }
+          5 = decoration(POOL_BORDER) { VisualEffects = NONE; }
+          6 = decoration(POOL_BORDER) { VisualEffects = ROTATE; }
+          7 = decoration(POOL_BORDER) { VisualEffects = FLIP; }
+          8 = decoration(POOL_BORDER) { VisualEffects = MIRROR | ROTATE; }
+          s = decoration(COUCH);
+          f = fountain { SecondaryMaterial = ICE; }
+          d = decoration(DOUBLE_BED);
+          B = GOLD boulder(1);
+          _ = decoration(BENCH);
+          - = decoration(DESK);
+          = = decoration(ARM_CHAIR);
+          ~ = decoration(EXPENSIVE_BED);
+          [ = decoration(OVEN);
+          t = decoration(TABLE);
+          x = olterraincontainer(CHEST_OF_DRAWERS) { ItemsInside = { 2, FABRIC cloak, Random { MinPrice = 100; Category = CLOAK|BODY_ARMOR|BELT|BOOT|GAUNTLET; ConfigFlags = NO_BROKEN; } } }
+          X = olterraincontainer(BOOK_CASE) { ItemsInside = { 2, Random { MaxPrice = 500; Category = SCROLL|BOOK; }, Random { MaxPrice = 500; Category = SCROLL|BOOK; } } }
+          c = christmastree;
+          % = GOLD barwall;
+          + = GOLD door(BARDOOR) { Parameters = LOCKED; }
+          S = sign { Text = "Be responsible, sort your waste."; }
+        }
+      }
+      {
+        b.b.b.b.b.b.b.b.b.b.b.b.b.b.b.b.b.b.b.b
+        .......................................
+        b...b...b..b...b.b.b.b.b..........b...b
+        ..b...b........#########........b...b..
+        b....b.......bb#.......#bb.......b....b
+        ...####b..b..###.......###..b..b####...
+        b.b#..#.b....#...........#....b.#..#b.b
+        ...#..#....###...........###....#..#...
+        b.b#..#b..b#...............#b..b#+%#b.b
+        ...#..###..#.....T.A.T.....#..###.B#...
+        b.b#....#.b#.......|.......#b.#....#b.b
+        ...#....#..#.......|.......#..#B.-=#...
+        b.b###..#b.###.....|.....###.S#..###b.b
+        ....b#..#@#.f#.....|.....#..#@#.B#b....
+        b....#....#_.#.....|.....#..#..B.#....b
+        ..bb.###..####.....|.....####..###.bb..
+        b.....b#.....#.....|.....#...B.#b.....b
+        .b..b..#.....#.....|.....#.B...#..b..b.
+        b..b...####..#.....|.....#..####...b..b
+        b....b....#..#.....|.....#.B#....b....b
+        .b.b....b###D#.....|.....#L###b....b.b.
+        b...b#####.#.#.....|.....#.#.#####b.b.b
+        ....##s....D.#.....|.....#.D.....##....
+        b..b#X..152#.#.....|.....#.#....._#b..b
+        .b..#X..8.6#.#.....|.....#.#..A.._#..b.
+        b...##.=8.6#.#.....|.....#.#.....##...b
+        ....b#@-8.6#.#.....|.....#.#....@#b....
+        b.b..b##8.6#.######D######.###L##b..b.b
+        .......#8.6#...............#~..#.......
+        b...b.b#473#...............#x=-#b.b...b
+        .b....##@####...###D###...####@##....b.
+        b..####.s.s.D...#.c.c.#...D..[.[####..b
+        ..b#.d......#####.f.f.#####.....[.[#b..
+        b..#....s.s.#b..b.....b..b#tttt....#..b
+        .b.##...#####.bb..c.c..bb.#####...##.b.
+        b..b##xx#b.b......f.f......b.b#..##b..b
+        ....b####....b...........b....####b....
+        b.b...b...b.......c.c.......b...b...b.b
+        ...............bb.f.f.bb...............
+        b.b.b.b.b.b.b.b..c...c..b.b.b.b.b.b.b.b
+      }
+
+      ItemMap
+      {
+        Pos = 4,4;
+        Size = 33,34;
+        Types
+        {
+          # == 0;
+          a == avatarofvalpurus;
+          b == banana;
+          k == kiwi;
+          p == pineapple;
+          e == backpack;
+          g == GOLD stone(SOL_STONE);
+          i == SILVER stone;
+          h == SAPPHIRE stone;
+          r == RUBY stone;
+          d == DIAMOND stone;
+          1 == lantern { SquarePosition = UP; }
+          2 == lantern { SquarePosition = DOWN; }
+          3 == lantern { SquarePosition = RIGHT; }
+          4 == lantern { SquarePosition = LEFT; }
+          C == GOLD itemcontainer(CHEST) { ItemsInside = { 3, meleeweapon(GRAND_STOLLEN_KNIFE), stone { Times = 10; }, GOLD banana; } }
+          y == GOLD itemcontainer(LARGE_CHEST) { ItemsInside = { 14,
+                                                                 flamingsword { Chance = 20; },
+                                                                 darkaxe { Chance = 20; },
+                                                                 whipofthievery { Chance = 20; },
+                                                                 thunderhammer { Chance = 20; },
+                                                                 chameleonwhip { Chance = 20; },
+                                                                 wondersmellstaff { Chance = 20; },
+                                                                 daggerofvenom { Chance = 20; },
+                                                                 weepblade { Chance = 20; },
+                                                                 slowaxe { Chance = 20; },
+                                                                 terrorscythe { Chance = 20; },
+                                                                 bansheesickle { Chance = 20; },
+                                                                 sharpaxe { Chance = 20; },
+                                                                 rustscythe { Chance = 20; },
+                                                                 meleeweapon(RUNE_SWORD) { Chance = 20; }
+                                                               }
+                                               }
+          F == GOLD ring(RING_OF_FIRE_RESISTANCE);
+          I == GOLD ring(RING_OF_INVISIBILITY);
+          E == GOLD amulet(AMULET_OF_ESP);
+          S == GOLD GOLD meleeweapon(LONG_SWORD);
+          U == DIAMOND helmet(HELM_OF_UNDERSTANDING);
+          A == GOLD helmet(HELM_OF_ATTRACTIVITY);
+          L == oillamp;
+          P == GOLD bodyarmor(PLATE_MAIL);
+          O == PHOENIX_FEATHER cloak(CLOAK_OF_FLYING);
+          W == DIAMOND wand(WAND_OF_POLYMORPH);
+          w == Random { MinPrice = 350; Category = WEAPON|SHIELD; ConfigFlags = NO_BROKEN; Enchantment = 1; }
+          c == Random { MinPrice = 700; Category = WEAPON|SHIELD; ConfigFlags = NO_BROKEN; Enchantment = 3; }
+          m == Random { MinPrice = 350; Category = HELMET|CLOAK|BODY_ARMOR|BELT|BOOT|GAUNTLET; ConfigFlags = NO_BROKEN; Enchantment = 1; }
+          X == itemcontainer(LARGE_CHEST) { ItemsInside = { 4, can { Times = 0:3; }, loaf { Times = 2:10; }, banana { Times = 0:10; }, carrot { Times = 0:3; } } }
+          t == itemcontainer(LARGE_CHEST) { ItemsInside = { 7, can { Times = 0:3; SecondaryMaterial = 0; }, PLANT_FIBER lump { Times = 0:1; }, lantern(BROKEN) { Times = 0:2; }, brokenbottle { Times = 0:5; }, bananapeels { Times = 0:5; }, banana(BROKEN) { Times = 0:1; }, bone { Times = 0:5; } } }
+          T == itemcontainer(LARGE_CHEST) { ItemsInside == Random { Times = 3:7; MaxPrice = 10; Category = CLOAK|BODY_ARMOR|BELT|BOOT|GAUNTLET; ConfigFlags = BROKEN; } }
+          n == trinket(POTTED_PLANT);
+          N == trinket(POTTED_CACTUS);
+          Y == trinket(LARGE_CLOCK);
+        }
+      }
+      {
+        ............##2###2##............
+        ............#.......#............
+        ####......###.......###......####
+        #..#......#...........#......#..4
+        #..#....###...........###....#..#
+        #..#....#...r.......r...#....#..#
+        #..###..#.........a.....#..###I.#
+        #...e#..#......b.b......#..#COLF#
+        #...e#..#......k.k......#..#.d..#
+        ##1.e#..##1.h..p.p..h.1##..#Ug1##
+        ..#.e4##..#....b.b....#tt##3r.#..
+        ..#....#..#....k.k....#Tt#Wh.L#..
+        ..###..4###....p.p....###3Fi###..
+        ....#.....3.d..b.b..d.4y.A.I#....
+        ....#.....#....k.k....#r.gEP#....
+        ....###3..#....p.p....#Sd4###....
+        .......#..#....b.b....#h.#.......
+        ......###.3.g..k.k..g.4.###......
+        ..#####.#.#....p.p....#.#.#####..
+        .##.......#....b.b....#.......##.
+        .#......3.#....k.k....#.4......#.
+        .#......#.3.i..p.p..i.4.#......#.
+        .##.....4.#....b.b....#.3.....##.
+        ..##....#.#...........#.#....##..
+        ...##...#.##2###.###2##.###.##...
+        ....#...4...............#...4....
+        ....#...#...............#...#....
+        ...###2###...##2.2##...##2####...
+        ####..n......#.....#.........####
+        #........#####.....#####........#
+        #.....N.n#.............#........4
+        ##Y..#####.............#####...##
+        .##..#.....................#XX##.
+        ..####.....................####..
+      }
+
+      CharacterMap
+      {
+        Pos = 4,4;
+        Size = 33,34;
+        Types
+        {
+          # = 0;
+          P = petrus { Flags = IS_MASTER; }
+          g = guard(VETERAN);
+          e = guard(EUNUCH);
+          E = guard(ELITE);
+          m = guard(MASTER);
+          p = priest(VALPURUS);
+          L = priest(LEGIFER);
+          d = dolphin(ADULT_FEMALE);
+          D = dolphin(ADULT_MALE);
+          l = frog(LIGHT);
+          f = frog(GREATER_LIGHT);
+          i = frog(GIANT_LIGHT);
+          y = mysticfrog(LIGHT);
+          s = femaleslave(ATTNAM);
+          j = femaleslave(JESTER);
+          1 = petrusswife(1);
+          2 = petrusswife(2);
+          3 = petrusswife(3);
+          4 = petrusswife(4);
+          5 = petrusswife(5);
+          6 = petrusswife(6);
+          k = kamikazedwarf(VALPURUS);
+          K = veterankamikazedwarf(VALPURUS);
+          h = imperialist(HOARD_MASTER);
+          G = golem(GOLD) { Inventory == GOLD stone(SOL_STONE); }
+          o = orc(REPRESENTATIVE);
+          a = siren(AMBASSADOR_SIREN);
+          A = guard(EMISSARY) { WayPoint = { 2, 26, 35, 34, 35; } }
+        }
+      }
+      {
+        ............#########....D.......
+        ............#g.....g#............
+        ####......###..ymy..###......####
+        #.K#......#g....l....g#......#G.#
+        #..#....###...........###....#..#
+        #k.#....#E.............E#....#..#
+        #k.###..#....sPs.s.s....#..###..#
+        #k...#..#.jf....i....f..#..#....#
+        #k...#..#E.............E#..#...h#
+        ###..#..###...........###..#..###
+        ..#..###..#...........#..###..#..
+        ..#....#L.#g.l.....l.g#..#....#..
+        ..###k.####...........####..###..
+        ....#k...k#.....o.....#.E...#....
+        ....#k...k#...........#.....#....
+        ....####.k#g.........g#..####....
+        .......#..#...........#..#.......
+        ......###.#.....a.....#.###......
+        ..#####E#.#...........#.#E#####..
+        .##.......#g.........g#.......##.
+        .#......#.#...........#.#..p...#.
+        .#....d.#.#.....A.....#.#......#.
+        .##...d.#.#...........#.#.....##.
+        ..##..d.#.#g.........g#.#....##..
+        ...##.d.#.######.######.###.##...
+        ....#.d.#......g.g......#...#....
+        ....#...#...............#...#....
+        ...#######...###.###...#######...
+        ####e3.5.....#g...g#.........####
+        #.1......#####.....#####........#
+        #....4.6.#.............#........#
+        ##...#####.............#####...##
+        .##2.#.....................#..##.
+        ..####.....................####..
+      }
+    }
+
+    Square, Pos 44,45;
+    {
+      OTerrain = stairs(STAIRS_DOWN);
+      EntryIndex = STAIRS_DOWN;
+    }
+
+    Room
+    {
+      Pos = 33,53;
+      Size = 7,6;
+      WallSquare = solidterrain(SNOW_TERRAIN),wall(BRICK_FINE);
+      FloorSquare = solidterrain(PARQUET), 0;
+      GenerateDoor = false;
+      DivineMaster = MELLIS;
+      Type = ROOM_SHOP;
+      GenerateLanterns = false;
+      GenerateWindows = false;
+
+      Square, Pos 3, 5;
+      {
+        GTerrain = solidterrain(PARQUET);
+        OTerrain = door;
+      }
+
+      Square, Pos 1, 1;
+      {
+        Character = slave;
+      }
+
+      Square, Pos 1, 4;
+      {
+        Items == banana;
+        Times = 100;
+      }
+
+      Square, Pos 5, 1;
+      {
+        Character = shopkeeper(ATTNAM) { Flags = IS_MASTER; }
+        OTerrain = decoration(CHAIR);
+      }
+
+      Square, Pos 3, 0;
+      {
+        OTerrain = GRANITE wall(BRICK_PROPAGANDA);
+      }
+
+      ItemMap
+      {
+        Pos = 0,0;
+        Size = 7,6;
+        Types
+        {
+          # == 0;
+          a == Random { MinPrice = 250; MaxPrice = 2000; Category = HELMET|CLOAK|BODY_ARMOR|BELT|BOOT|GAUNTLET; }
+          d == Random { MinPrice = 50; MaxPrice = 2000; Category = RING|AMULET; }
+          w == Random { MinPrice = 250; MaxPrice = 2000; Category = WEAPON|SHIELD; }
+          e == Random { MinPrice = 10; MaxPrice = 2000; Category = FOOD|POTION; }
+          u == Random { MinPrice = 50; MaxPrice = 2000; Category = WAND|TOOL; }
+          v == Random { MinPrice = 500; MaxPrice = 2000; }
+          p == lump { MainMaterial = BEAR_FLESH { Volume = 20000; } }
+          l == lantern;
+          2 == lantern { SquarePosition = DOWN; }
+          3 == lantern { SquarePosition = RIGHT; }
+          4 == lantern { SquarePosition = LEFT; }
+        }
+      }
+      {
+        ##2#2##
+        #.aaa.#
+        #edduw#
+        3eeluw4
+        #.epvw#
+        2##.##2
+      }
+    }
+
+    Room
+    {
+      Pos = 52,53;
+      Size = 7,6;
+      WallSquare = solidterrain(SNOW_TERRAIN),wall(BRICK_FINE);
+      FloorSquare = solidterrain(PARQUET), 0;
+      GenerateDoor = false;
+      DivineMaster = SOPHOS;
+      Type = ROOM_LIBRARY;
+      GenerateLanterns = false;
+      GenerateWindows = false;
+
+      Square, Pos 3, 5;
+      {
+        GTerrain = solidterrain(PARQUET);
+        OTerrain = door;
+      }
+
+      Square, Pos 3, 0;
+      {
+        OTerrain = GRANITE wall(BRICK_PROPAGANDA);
+      }
+
+      Square, Pos 3, 3;
+      {
+        Character = librarian { Flags = IS_MASTER; }
+      }
+
+      Square, Pos 3, 3;
+      {
+        OTerrain = decoration(CHAIR);
+      }
+
+      Square, Pos 3, 0;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 0, 5;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 6, 5;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      OTerrainMap
+      {
+        Pos = 1,1;
+        Size = 5,4;
+        Types
+        {
+          = = olterraincontainer(BOOK_CASE) { ItemsInside = { 2, Random { MaxPrice = 500; Category = SCROLL|BOOK; }, Random { MaxPrice = 500; Category = SCROLL|BOOK; } } }
+        }
+      }
+      {
+        =====
+        =...=
+        =...=
+        =...=
+      }
+    }
+
+    Room
+    {
+      Pos = 21,53;
+      Size = 7,6;
+      AltarPossible = false;
+      WallSquare = solidterrain(SNOW_TERRAIN),wall(BRICK_FINE);
+      FloorSquare = solidterrain(FLOOR), 0;
+      DoorSquare = solidterrain(FLOOR), door;
+      GenerateDoor = false;
+      DivineMaster = LORICATUS;
+      GenerateLanterns = false;
+      GenerateWindows = false;
+
+      Square, Pos 3, 5;
+      {
+        GTerrain = solidterrain(FLOOR);
+        OTerrain = door;
+      }
+
+      Square, Pos 3, 0;
+      {
+        OTerrain = GRANITE wall(BRICK_PROPAGANDA);
+      }
+
+      Square, Pos 0, 3;
+      {
+        Items == lantern { SquarePosition = RIGHT; }
+      }
+
+      Square, Pos 6, 3;
+      {
+        Items == lantern { SquarePosition = LEFT; }
+      }
+
+      Square, Pos 2, 0;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 4, 0;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 0, 5;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 6, 5;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 3, 2;
+      {
+        Character = smith(ATTNAM) { Flags = IS_MASTER; }
+      }
+
+      Square, Pos 3, 3;
+      {
+        OTerrain = decoration(ANVIL);
+      }
+
+      Square, Pos 1, 1;
+      {
+        OTerrain = decoration(FORGE);
+      }
+
+      Square, Pos 5, 1;
+      {
+        OTerrain = decoration(PLAIN_BED);
+      }
+    }
+
+    Room
+    {
+      Pos = 2,53;
+      Size = 7,6;
+      AltarPossible = false;
+      WallSquare = solidterrain(SNOW_TERRAIN),wall(BRICK_FINE);
+      FloorSquare = solidterrain(PARQUET), 0;
+      GenerateDoor = false;
+      DivineMaster = LORICATUS;
+      GenerateLanterns = false;
+      GenerateWindows = false;
+
+      Square, Pos 3, 5;
+      {
+        GTerrain = OAK_WOOD solidterrain(PARQUET);
+        OTerrain = door;
+      }
+
+      Square, Pos 3, 0;
+      {
+        OTerrain = GRANITE wall(BRICK_PROPAGANDA);
+      }
+
+      Square, Pos 0, 3;
+      {
+        Items == lantern { SquarePosition = RIGHT; }
+      }
+
+      Square, Pos 6, 3;
+      {
+        Items == lantern { SquarePosition = LEFT; }
+      }
+
+      Square, Pos 2, 0;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 4, 0;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 0, 5;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 6, 5;
+      {
+        Items == lantern { SquarePosition = DOWN; }
+      }
+
+      Square, Pos 3, 2;
+      {
+        Character = tailor(ATTNAM) { Flags = IS_MASTER; }
+      }
+
+      Square, Pos 3, 3;
+      {
+        OTerrain = decoration(WORK_BENCH);
+      }
+
+      Square, Pos 1, 2;
+      {
+        OTerrain = decoration(PLAIN_BED);
+      }
+    }
+
+    Room
+    {
+      FloorSquare = solidterrain(FLOOR), 0;
+      WallSquare = solidterrain(SNOW_TERRAIN), FIR_WOOD wall(BRICK_FINE);
+      DoorSquare = solidterrain(FLOOR), door;
+
+      Square, Random HAS_NO_OTERRAIN;
+      {
+        OTerrain = decoration(PLAIN_BED);
+      }
+
+      Square, Random HAS_NO_OTERRAIN;
+      {
+        OTerrain = olterraincontainer(CHEST_OF_DRAWERS) { ItemsInside == materialmanual; }
+      }
+    }
+
+    Room
+    {
+      FloorSquare = solidterrain(FLOOR), 0;
+      WallSquare = solidterrain(SNOW_TERRAIN), FIR_WOOD wall(BRICK_FINE);
+      DoorSquare = solidterrain(FLOOR), door;
+
+      Square, Random HAS_NO_OTERRAIN;
+      {
+        OTerrain = decoration(PLAIN_BED);
+      }
+
+      Square, Random HAS_NO_OTERRAIN;
+      {
+        OTerrain = decoration(CHAIR);
+      }
+
+      Square, Random HAS_NO_OTERRAIN;
+      {
+        OTerrain = decoration(TABLE);
+      }
+    }
+
+    Room
+    {
+      FloorSquare = solidterrain(FLOOR), 0;
+      WallSquare = solidterrain(SNOW_TERRAIN), FIR_WOOD wall(BRICK_FINE);
+      DoorSquare = solidterrain(FLOOR), door;
+
+      Square, Random HAS_NO_OTERRAIN;
+      {
+        OTerrain = decoration(CHEAP_BED);
+      }
+    }
+  }
+
+  Level 1;
+  {
+    Description = "cathedral cellar";
+    ShortDescription = "Cellar";
+    Size = 42, 48;
+    GenerateMonsters = false;
+    Rooms = 1;
+    Items = 0;
+    IsOnGround = false;
+    TeamDefault = ATTNAM_TEAM;
+    LOSModifier = 16;
+    IgnoreDefaultSpecialSquares = false;
+    CanGenerateBone = false;
+    DifficultyBase = 150;
+    DifficultyDelta = 0;
+    EnchantmentMinusChanceBase = 0;
+    EnchantmentMinusChanceDelta = 0;
+    EnchantmentPlusChanceBase = 0;
+    EnchantmentPlusChanceDelta = 0;
+    BackGroundType = GRAY_FRACTAL;
+    FillSquare = solidterrain(GROUND), MORAINE earth;
+    TunnelSquare = solidterrain(GROUND), 0;
+    EarthquakesAffectTunnels = false;
+
+    Room
+    {
+      Size = 38, 44;
+      Pos = 2, 2;
+      WallSquare = solidterrain(GROUND), 0;
+      FloorSquare = solidterrain(GROUND), 0;
+      AltarPossible = false;
+      GenerateDoor = false;
+      DivineMaster = VALPURUS;
+      GenerateTunnel = false;
+      GenerateLanterns = false;
+      Type = ROOM_OWNED_AREA;
+      GenerateFountains = false;
+      AllowLockedDoors = false;
+      AllowBoobyTrappedDoors = false;
+      Shape = RECTANGLE;
+      IsInside = true;
+      GenerateWindows = false;
+      UseFillSquareWalls = false;
+      Flags = 0;
+
+      GTerrainMap
+      {
+        Size = 39, 44;
+        Pos = 0, 0;
+        Types
+        {
+          * = 0;
+          # = 0;
+          _ = MARBLE solidterrain(FLOOR);
+          + = solidterrain(PARQUET);
+        }
+      }
+      {
+        ************###########################
+        *####*******#...#..#....#....#....#...#
+        *#..#*******#......#....#....##.###...#
+        *#..#*******#......##.#####.##........#
+        *####*******#...#.................#####
+        ************#######...####...####.....#
+        *****************.....#**#...#**#.#...#
+        #####**********..*#...#.*#...#**#.#...#
+        #...#*************#####*#######*#.#####
+        #...#*******************#.....#*#.....#
+        ##.######################.....#*#.#...#
+        #.............................#*#.#...#
+        #.............................#*#.#####
+        ##.#####.#####.#####.####.....#*#...#**
+        #...#*#...#*#...#*#...#*#.....#*#...#**
+        #...#*#...#*#...#*#...#*#.....#*#...#**
+        #####*#####*#####*#####*##...##*#...#**
+        *************************#...#**#...#**
+        #####*#####*#####*#####*##...##*#...#**
+        #...#*#...#*#...#*#...#*#.....#*#...#**
+        #...#*#...#*#...#*#...#*#.....#*#.###**
+        ##.#####.#####.#####.####.....#*#.#****
+        #.............................###.##***
+        #..................................#***
+        #########################.....#.#..#***
+        *########.............#*#.....#.#..#***
+        *#_____##.............#*##...##.#..#***
+        *#_____##.............#**#...##.#..#***
+        *#_____##.............####...##.#..#***
+        *#_____##.............#.......#.#######
+        *#_____##########.#####.......#.......#
+        *#_____##...#...#.#...#.......#.#.....#
+        *#_____##...#...#.....#.......#.#.....#
+        ####_####.#####.#.#####.......#.#.....#
+        #.......#.............#.......#.#.....#
+        #.......#.#####.#.#...#.......#.#.....#
+        #.......#...#...#.#############.#.....#
+        #######.#...#...#...............#.....#
+        *#++++#.#########.##.####.#####.#######
+        *#++++............#...#.....#.........#
+        *#++++#############...#.....#.........#
+        *#++++#***********#####.....#.........#
+        *#++++#***************#.....#.........#
+        *######***************#################
+      }
+
+      OTerrainMap
+      {
+        Size = 39, 44;
+        Pos = 0, 0;
+        Types
+        {
+          * = MORAINE earth;
+          # = BLACK_GRANITE wall(BRICK_OLD);
+          @ = IRON barwall;
+          & = PAPER_BOARD barwall; /* Yes, it's a cardboard prison joke. */
+          $ = IRON barwall(BROKEN_BARWALL);
+          % = IRON door(BARDOOR);
+          = = PAPER_BOARD door(BARDOOR) { Parameters = LOCKED; }
+          ^ = MARBLE wall(BRICK_PROPAGANDA);
+          > = stairs(STAIRS_DOWN);
+          < = stairs(STAIRS_UP);
+          B = IRON brokendoor(BARDOOR);
+          C = MARBLE coffin { ItemsInside = { 2, skull, bone { Times = 1:3; } } }
+          D = IRON door;
+          E = decoration(DOUBLE_BED);
+          F = decoration(WELL);
+          H = olterraincontainer(SHELF)
+          {
+            ItemsInside = { 4, can { Times = 0:3; }, loaf { Times = 2:10; }, banana { Times = 0:10; }, carrot { Times = 0:3; } }
+          }
+          L = IRON door(BARDOOR) { Parameters = LOCKED; }
+          I = ironmaiden;
+          N = GRANITE wall(BRICK_FINE);
+          P = GRANITE wall(BRICK_PROPAGANDA);
+          R = olterraincontainer(CHEST_OF_DRAWERS)
+          {
+            ItemsInside == Random { Category = CLOAK|BODY_ARMOR|BELT|BOOT|GAUNTLET; ConfigFlags = NO_BROKEN; }
+          }
+          S = BLACK_GRANITE door(SECRET_DOOR);
+          T = decoration(TABLE);
+          X = BLACK_GRANITE wall(BROKEN_WALL);
+          W = olterraincontainer(SHELF)
+          {
+            ItemsInside = { 1, potion { Times = 3:5; SecondaryMaterial = VODKA; } }
+          }
+          b = boulder(1);
+          d = decoration(PLAIN_BED);
+          c = decoration(CARPET);
+          e = MARBLE wall(BRICK_OLD);
+          f = fountain;
+          l = IRON door { Parameters = LOCKED; }
+          n = decoration(BENCH);
+          r = decoration(CHAIR);
+          s = decoration(SHACKLES);
+          t = decoration(TORTURE_RACK);
+          w = decoration(WOODEN_HORSE);
+          x = MARBLE wall(BRICK_FINE);
+          1 = MARBLE sign { Text = "Here rests in honored glory an Attnamese soldier known but to Valpurus."; }
+        }
+      }
+      {
+        ************#######################XX##
+        *####*******X.s.@..@...sX....#...s$...#
+        *#..#*******#...@..@....#....#@B@@@...#
+        *#..#*******#s..L..@@B@@#@@%@#b...%...#
+        *##S#*******X...@............S....XX###
+        **#.#*******#######@%$X##X@L@#XX#.%..s#
+        **#.#************b....#**#...X**X.@...#
+        ###S#**********>.*#s..#**#.s.#**#.$...X
+        #..I#*************#XX##*##NPN##*#.#XXX#
+        #...#*******************#.....#*#.%...X
+        #@L@#####################.....#*#.@.s.#
+        #.............................#*#.@...#
+        #.............................#*#S#####
+        #@L@###&=&###@L@###@%@###.....#*#.WW#**
+        #...#*#...#*#...#*#...#*#.....#*#..W#**
+        #..s#*#.d.#*#.s.#*#...#*#.....#*#.WW#**
+        #####*#####*#####*#####*##...##*#..W#**
+        *************************#...#**#.WW#**
+        #####*#####*#####*#####*##...##*#..W#**
+        #..s#*#...#*#s..#*#.s.#*#.....#*#.WW#**
+        #...#*#...#*#...#*#...#*#.....#*#D###**
+        #@L@###@%@###@%@###@%@###.....#*#.#****
+        #.............................###D##***
+        #.............................D.D..#***
+        #########################.....#D#..#***
+        *xx^x^xx#d.d.d.d.d.d.d#*#.....#.#..#***
+        *x.....x#.............#*##...##.#..#***
+        *x..C..x#.............#**#...##.#..#***
+        *x..c..x#.............####...##.#.<#***
+        *x..c..x#d.d.d.d...d.d#.......#.#######
+        *x..c1.x#########D#####.I.....#.D.....#
+        *x..c..x#..d#..T#.#T.d#.......#.#.rTr.#
+        *x..c..x#.rT#d..#.D..R#.....w.#.#.rTr.#
+        #xxxDxxx#D#####D#.#####.t.....#.#.rTr.#
+        #n.....f#.........D...#.....w.#.#.rTr.#
+        #.......#D#####D#.#..d#..r....#.#.rTr.#
+        #n......#..d#d..#.#############.#.rTr.#
+        #######D#r.R#Tr.#...............#.....#
+        *#....#.#########.##l####D#####D#######
+        *#....l...........#..R#H...H#.........#
+        *#....#############drT#H.F.H#.........#
+        *#.E..#***********#####H...H#.........#
+        *#..s.#***************#HHHHH#.........#
+        *######***************#################
+      }
+
+      ItemMap
+      {
+        Size = 39, 44;
+        Pos = 0, 0;
+        Types
+        {
+          * == 0;
+          # == 0;
+          1 == lantern { SquarePosition = UP; }
+          2 == lantern { SquarePosition = DOWN; }
+          3 == lantern { SquarePosition = RIGHT; }
+          4 == lantern { SquarePosition = LEFT; }
+          r == GRANITE stone;
+          b == lantern(BROKEN);
+          c == itemcontainer(SMALL_CHEST) { Parameters = LOCKED; ItemsInside == Random { Category = CLOAK|BODY_ARMOR|BELT|BOOT|GAUNTLET; ConfigFlags = NO_BROKEN; } }
+          p == COPPER pickaxe(BROKEN);
+        }
+      }
+      {
+        ************###########################
+        ************#..b#..#....#....#....#...#
+        ************#....r.#....#....##.###...#
+        ************#......##.#####.##........#
+        ************#..b#...............b.#####
+        ************#######..#####...####.....#
+        *****************.r.b#***#...#**#.#...#
+        #####**********.p*####***#...#**#.#...#
+        #...#*******************##...##*#.#####
+        #...#*******************#.....#*#.....#
+        ##.#####2#####2#####2###3.....#*#.#...#
+        3.............................#*#.#...#
+        #.............................#*#.#####
+        ##.#####.#####.#####.####.....#*#...#**
+        #...#*#...#*#...#*#...#*3.....#*#...#**
+        #...#*#...#*#...#*#...#*#.....#*#...#**
+        #####*#####*#####*#####*##...##*#...#**
+        *************************#...#**#...#**
+        #####*#####*#####*#####*##...##*3...#**
+        #...#*#...#*#...#*#...#*#.....#*#...#**
+        #...#*#...#*#...#*#...#*3.....#*#.###**
+        ##.#####.#####.#####.####.....#*#.#****
+        #.............................###.##***
+        #..................................4***
+        ##1#####1#####1#####1###3.....#.#..#***
+        *########.............#*#.....#.#..#***
+        *#.....##c.c.c.c.c.c.c#*##...##.#..#***
+        *3.....43.............4**#...##.3..#***
+        *#.....##c.c.c.c...c.c####...##.#..#***
+        *3.....4#.............#.......#.###2###
+        *#.....###2###2#1.##2#3.......4.......#
+        *3.....4#c..#c..#.#...#.......#.4.....#
+        *#.....##...#...#.....#.......#.3.....4
+        ####.####.#####.3.#####.......#.#.....#
+        #.......3.............3.......4.#.....#
+        3.......4.#####.#.#cc.#.......#.3.....4
+        #.......3...#...#.#1####2######.#.....#
+        #######.#...#...#...............#.....#
+        *#....#.#######1#.##.###2.####2.###12##
+        *3................3...#.....#.........#
+        *#....#####1#######...#.....#.........#
+        *#....#***********#####.....#.........#
+        *#....#***************#.....#.........#
+        *######***************########1#####1##
+      }
+
+      CharacterMap
+      {
+        Size = 39, 44;
+        Pos = 0, 0;
+        Types
+        {
+          * = 0;
+          # = 0;
+          G = guard(VETERAN);
+          H = guard(HONOR);
+          t = guard(TRAINEE) { WayPoint = { 4, 33, 42, 34, 43, 38, 43, 38, 41; } }
+          N = necromancer(IMPRISONED_NECROMANCER) { Team = 15; }
+          P = punisher;
+          L = punisher(LAW_STUDENT);
+          M = mistress { Inventory == potion { Times = 1:2; SecondaryMaterial = VALDEMAR; } }
+          T = imperialist(MASTER_TORTURER) { Flags = IS_MASTER; }
+          1 = farmer(IMPRISONED_FARMER) { Team = 15; }
+          2 = hunter(IMPRISONED_HUNTER) { Team = 15; }
+          3 = femaleslave(IMPRISONED_FEMALE) { Team = 15; }
+          4 = zombie(IMPRISONED_ZOMBIE) { Team = 15; }
+          7 = petrusswife(7);
+        }
+      }
+      {
+        ************###########################
+        ************#...#..#....#....#....#...#
+        ************#.4....#....#....##.###...#
+        ************#......##.#####.##........#
+        ************#...#.................#####
+        ************#######..#.###...####.....#
+        ******************#..#.**#...#**#.#...#
+        ******************####*.*#7..#**#.#...#
+        ************************#######*#.#####
+        ************************#...G.#*#.....#
+        #########################.....#*#.#...#
+        #.............................#*#.#...#
+        #.............................#*#.#####
+        ##.#####.#####.#####.####.....#*#...#**
+        #...#*#...#*#...#*#...#*#.....#*#...#**
+        #1..#*#...#*#2..#*#...#*#.....#*#...#**
+        #####*#####*#####*#####*##...##*#...#**
+        *************************#...#**#...#**
+        #####*#####*#####*#####*##...##*#...#**
+        #...#*#...#*#...#*#N..#*#.....#*#...#**
+        #..3#*#...#*#...#*#...#*#.....#*#.###**
+        ##.#####.#####.#####.####.....#*#.#****
+        #.............................###.##***
+        #..........................L.......#***
+        #########################.....#.#..#***
+        *########.............#*#.....#.#.G#***
+        *#.....##.............#*##...##.#..#***
+        *#.....##.............#**#...##.#..#***
+        *#.....##........G....####...##.#G.#***
+        *#.....##.............#....P..#.#######
+        *#.....##########.#####.......#.......#
+        *#.....##...#...#.#...#..P....#.#.....#
+        *#.....##...#...#.....#.......#.#.....#
+        ####.####.#####.#.#####....P..#.#.....#
+        #..H.H..#.............#.......#.#.....#
+        #.......#.#####.#.#...#..T....#.#.....#
+        #.......#...#...#.#############.#.....#
+        #######.#...#...#...............#.....#
+        *#....#.#########.##.####.#####.#######
+        *#................#...#.....#...G...t.#
+        *#....#############...#.....#.t.......#
+        *#..M.#***********#####.....#...t...t.#
+        *#....#***************#.....#.........#
+        *######***************#################
+      }
+    }
+
+    Square, Pos 36,30;
+    {
+      OTerrain = stairs(STAIRS_UP);
+      EntryIndex = STAIRS_UP;
+    }
+
+    Square, Pos 17,9;
+    {
+      OTerrain = stairs(STAIRS_DOWN);
+      EntryIndex = STAIRS_DOWN;
+    }
+  }
+
+  RandomLevel 2:3; /* Beartrap vault */
+  {
+    Room
+    {
+      Size = 6,6;
+      Flags = NO_MONSTER_GENERATION;
+
+      Square, Random;
+      {
+        Items == Random { Category = RING|SCROLL|WAND; }
+      }
+
+      Square, Random;
+      {
+        Items == METEORIC_STEEL beartrap { Team = MONSTER_TEAM; IsActive = true; LifeExpectancy = 1000:10000; }
+        Times == 3;
+      }
+
+      Square, Random;
+      {
+        Items == MITHRIL beartrap { Team = MONSTER_TEAM; IsActive = true; LifeExpectancy = 1000:10000; }
+        Times == 2;
+      }
+
+      Square, Random;
+      {
+        Items == OCTIRON beartrap { Team = MONSTER_TEAM; IsActive = true; LifeExpectancy = 1000:10000; }
+      }
+
+      Square, Random;
+      {
+        Items == ADAMANT beartrap { Team = MONSTER_TEAM; IsActive = true; LifeExpectancy = 1000:10000; }
+      }
+    }
+  }
+
+  RandomLevel 3:4; /* Sepulcher */
+  {
+    Room
+    {
+      GenerateLanterns = false;
+      GenerateFountains = false;
+      GenerateDoor = false;
+      GenerateTunnel = false;
+      AltarPossible = false;
+      Size = 5,5;
+      UseFillSquareWalls = true;
+      Flags = NO_MONSTER_GENERATION;
+
+      OTerrainMap
+      {
+        Pos = 1,1;
+        Size = 3,3;
+        Types
+        {
+          # = BLACK_GRANITE wall(BRICK_OLD);
+        }
+      }
+      {
+        ###
+        #.#
+        ###
+      }
+
+      Square, Pos 2,2;
+      {
+        Items == EBONY_WOOD itemcontainer(CHEST|HEXAGONAL_LOCK) { Parameters = LOCKED; ItemsInside = { 2, Random { MinPrice = 500; Category = TOOL|WAND; }, Random { Chance = 75; MinPrice = 750; Times = 2; Category = HELMET|CLOAK|BODY_ARMOR|WEAPON|SHIELD|RING|GAUNTLET|BELT|BOOT; } } }
+        Character = vampire;
+      }
+    }
+  }
+
+  Level 2;
+  {
+    Square, Random NOT_WALKABLE|ATTACHABLE;
+    {
+      OTerrain = stairs(STAIRS_UP);
+      EntryIndex = STAIRS_UP;
+      AttachRequired = true;
+    }
+
+    Square, Random NOT_WALKABLE|ATTACHABLE;
+    {
+      OTerrain = stairs(STAIRS_DOWN);
+      EntryIndex = STAIRS_DOWN;
+      AttachRequired = true;
+    }
+
+    Square, Random;
+    {
+      Character = skeleton(WARRIOR);
+    }
+  }
+
+  Level 3;
+  {
+    Square, Random NOT_WALKABLE|ATTACHABLE;
+    {
+      OTerrain = stairs(STAIRS_UP);
+      EntryIndex = STAIRS_UP;
+      AttachRequired = true;
+    }
+
+    Square, Random NOT_WALKABLE|ATTACHABLE;
+    {
+      OTerrain = stairs(STAIRS_DOWN);
+      EntryIndex = STAIRS_DOWN;
+      AttachRequired = true;
+    }
+  }
+
+  Level 4;
+  {
+    Description = "lost tomb";
+    ShortDescription = "Lost Tomb";
+    LevelMessage = "You hear rhythmic chanting of some profane ritual: \"Ia! Ia! Khaz-zadm fhtagn!\"";
+    DifficultyBase = 100;
+    DifficultyDelta = 0;
+    ItemMinPriceBase = 100;
+    ItemMinPriceDelta = 10;
+
+    Square, Random NOT_IN_ROOM|ATTACHABLE;
+    {
+      OTerrain = stairs(STAIRS_UP);
+      EntryIndex = STAIRS_UP;
+      AttachRequired = true;
+    }
+
+    Room
+    {
+      Size = 11, 11;
+      DoorSquare = GRANITE solidterrain(GROUND),IRON door;
+      AltarPossible = false;
+      DivineMaster = MORTIFER;
+      GenerateDoor = true;
+      GenerateTunnel = true;
+      GenerateLanterns = false;
+      AllowLockedDoors = true;
+      Shape = ROUND_CORNERS;
+      Flags = NO_MONSTER_GENERATION;
+
+      OTerrainMap
+      {
+        Size = 9, 9;
+        Pos = 1, 1;
+
+        Types
+        {
+          b = 0;
+          s = 0;
+          C = coffin;
+         }
+      }
+      {
+        .........
+        ...bbb...
+        ..s...s..
+        .b.....b.
+        .b..C..b.
+        .b.....b.
+        ..s...s..
+        ...bbb...
+        .........
+      }
+
+      ItemMap
+      {
+        Size = 9, 9;
+        Pos = 1, 1;
+
+        Types
+        {
+          b == bone { Times = 1:4; }
+          s == skull;
+          C == 0;
+         }
+      }
+      {
+        .........
+        ...bbb...
+        ..s...s..
+        .b.....b.
+        .b..C..b.
+        .b.....b.
+        ..s...s..
+        ...bbb...
+        .........
+      }
+
+      CharacterMap
+      {
+        Size = 9, 9;
+        Pos = 1, 1;
+
+        Types
+        {
+          b = 0;
+          s = 0;
+          C = 0;
+          N = necromancer(APPRENTICE_NECROMANCER) { Inventory = { 2, lantern, wand; } }
+          Z = zombie(ZOMBIE_OF_KHAZ_ZADM);
+          p = dog(SKELETON_DOG);
+         }
+      }
+      {
+        .........
+        ...bbb...
+        ..s...s..
+        .b.N.p.b.
+        .b..C..b.
+        .b.p.Z.b.
+        ..s...s..
+        ...bbb...
+        .........
+      }
+    }
+
+    Square, Random IN_ROOM;
+    {
+      Items == Random { Category = SCROLL; }
+    }
+  }
+}
